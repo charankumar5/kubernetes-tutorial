@@ -92,7 +92,7 @@ Create a cluster using a configuration file:
 ```bash id="eo4c7c"
 kind create cluster \
   --image kindest/node:v1.29.4@sha256:3abb816a5b1061fb15c6e9e60856ec40d56b7b52bcea5f5f1350bc6e2320b6f8 \
-  --name ngvoice-cluster \
+  --name local-cluster \
   --config kind-config.yaml
 ```
 
@@ -145,8 +145,8 @@ kubectl get nodes -o wide
 Label nodes to pin workloads (e.g., MySQL pods) to specific nodes:
 
 ```bash id="5s84ro"
-kubectl label node ngvoice-cluster-worker  database-location=node-1
-kubectl label node ngvoice-cluster-worker2 database-location=node-2
+kubectl label node local-cluster-worker  database-location=node-1
+kubectl label node local-cluster-worker2 database-location=node-2
 ```
 
 Verify labels:
