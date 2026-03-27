@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-rc
+  labels:
+    env: dev
+spec:
+  replicas: 6
+  selector:
+    env: dev
+  # inside teemplate, we specify metadata and specs of the pod.
+  template:
+    metadata:
+      name: nginx-rc
+      labels:
+        env: dev
+    spec:
+      containers:
+        - name: nginx-rc
+          image: nginx:latest
+          ports:
+           - containerPort: 80

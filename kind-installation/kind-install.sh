@@ -12,7 +12,7 @@ kind --version
 
 # Install kubectl
 sudo apt-get update
-sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupgcd 
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.35/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
