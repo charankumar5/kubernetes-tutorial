@@ -3,17 +3,17 @@ kind: ReplicaSet
 metadata:
   name: nginx-rs
   labels:
-    env: dev  # another example (app: dev) # key: value are customised and our wish to define.
+    env: test  # another example (app: dev) # key: value are customised and our wish to define.
 spec:
   replicas: 3
   selector:
     matchLabels:
-      env: dev # another example (app: dev) # key: value are customised and our wish to define.
+      env: test # another example (app: dev) # key: value are customised and our wish to define.
   template:
     metadata:
       name: nginx-rs
       labels:
-        env: dev
+        env: test
         type: frontend
     spec:
       containers:

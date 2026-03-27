@@ -154,14 +154,15 @@ Supported operators:
 
 ## 📊 Side-by-Side Comparison
 
-| Feature                  | ReplicaSet (RS)                    | ReplicationController (RC) |
-| ------------------------ | ---------------------------------- | -------------------------- |
-| API Version              | `apps/v1`                          | `v1`                       |
-| Selector Type            | `matchLabels` + `matchExpressions` | Simple key-value only      |
-| Set-based selectors      | ✅ Yes                              | ❌ No                       |
-| Equality-based selectors | ✅ Yes                              | ✅ Yes                      |
-| Production usage         | ✅ Used (via Deployment)            | ❌ Deprecated/legacy        |
-| Managed by Deployment    | ✅ Yes                              | ❌ No                       |
+| Feature                  | ReplicaSet (RS)                                                                 | ReplicationController (RC) |
+|--------------------------|--------------------------------------------------------------------------------|----------------------------|
+| API Version              | `apps/v1`                                                                      | `v1`                       |
+| Selector Type            | `matchLabels` + `matchExpressions`                                             | Simple key-value only      |
+| Set-based selectors      | ✅ Yes                                                                          | ❌ No                       |
+| Equality-based selectors | ✅ Yes                                                                          | ✅ Yes                      |
+| Existing Pod Management  | ✅ Manages **existing Pods** matching `spec.selector.matchLabels`               | ✅ Manages existing Pods matching selector |
+| Production usage         | ✅ Used (via Deployment)                                                        | ❌ Deprecated/legacy        |
+| Managed by Deployment    | ✅ Yes                                                                          | ❌ No                       |
 
 ---
 

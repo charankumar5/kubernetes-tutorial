@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    env: dev  # another example (app: dev) # key: value are customised and our wish to define.
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      env: dev # another example (app: dev) # key: value are customised and our wish to define.
+  template:
+    metadata:
+      name: nginx-deployment
+      labels:
+        env: dev
+        type: frontend
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
