@@ -2,9 +2,22 @@
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 networking:
-  disableDefaultCNI: true # disable default CNI to use Calico instead to satisfy Case Study to deny traffic and pod network policies
+  #disableDefaultCNI: true # disable default CNI to use Calico instead to satisfy Case Study to deny traffic and pod network policies
   podSubnet: "192.168.0.0/16"
 nodes:
 - role: control-plane
+
+  # -------------------------------------------------------
+  # PORT FORWARD BLOCK (LOCALHOST ACCESS ONLY)
+  # -------------------------------------------------------
+  # port forward to 30080 port on the host (ex: localhost:30080) # Only need this block to access via local machine ip or localhost
+  # this block is not required to get access via (ex: node-ip:30080)
+  # If not required, delete this block and apply.
+  extraPortMappings:
+    - containerPort: 30080
+      hostPort: 30080
+      listenAddress: "127.0.0.1"
+      protocol: TCP
+
 - role: worker
 - role: worker

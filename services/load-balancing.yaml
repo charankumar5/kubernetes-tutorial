@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: load-balancing-service
+  labels:
+    env: dev
+  namespace: default
+spec:
+  selector:
+    env: dev
+  # No need to explicitly specify the type.
+  type: LoadBalancer # By default it creates ClusterIP.
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
