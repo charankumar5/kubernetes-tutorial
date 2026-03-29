@@ -1,0 +1,35 @@
+# three node (two workers) cluster config
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+
+  # -------------------------------------------------------
+  # PORT FORWARD BLOCK (LOCALHOST ACCESS ONLY)
+  # -------------------------------------------------------
+  # port forward to 30080 port on the host (ex: localhost:30080) # Only need this block to access via local machine ip or localhost
+  # this block is not required to get access via (ex: node-ip:30080)
+  # If not required, delete this block and apply.
+  extraPortMappings:
+    - containerPort: 30090
+      hostPort: 30090
+      listenAddress: "127.0.0.1"
+      protocol: TCP
+- role: worker
+- role: worker
+
+# To setup our own network policies and isolate pods or restrict communication between the pods.
+# we install our own CNI plugin and by disabling the default CNI.
+networking:
+  disableDefaultCNI: true # disable default CNI to use Calico instead to satisfy Case Study to deny traffic and pod network policies
+  podSubnet: "192.178.0.0/16"
+  serviceSubnet: "192.179.0.0/16"
+
+
+# create cluster using below command:
+# kind create cluster --name test-cluster --config networkpolicies/kind-installation/kind-config.yaml
+
+# use calico to install on kind
+# url: https://docs.tigera.io/calico/latest/getting-started/kubernetes/kind
+# use manifest type to install and don't use operator type:
+# kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.31.4/manifests/calico.yaml
