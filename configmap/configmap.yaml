@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: testmap
+data:
+  testdata: testeddata # key value pair of values
+  default.conf: |
+    server {
+      listen 80;
+      location / {
+        root /usr/share/nginx/html;
+        index index_rendered.html;
+      }
+    }
+
+  index.template.html: |
+    <!DOCTYPE html>
+    <html>
+    <head><title>Web Server</title></head>
+    <body>
+      <h1>Welcome to the Web Server</h1>
+    </body>
+    </html>
