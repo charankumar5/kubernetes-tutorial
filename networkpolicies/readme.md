@@ -18,9 +18,15 @@ This tutorial demonstrates how to:
 
 ```mermaid
 graph TD
-    F[Frontend Pod] -->|HTTP:80| B[Backend Pod]
-    F -->|TCP:3306| DB[(MySQL DB)]
-    B -->|TCP:3306| DB
+    F[Frontend Pod] -.-> DB[(MySQL DB)]
+    B[Backend Pod] --> DB
+    F --> B
+    B --> F
+
+    %% Labels (separate for compatibility)
+    F -.->|BLOCKED: 3306| DB
+    B -->|ALLOW: 3306| DB
+    F -->|HTTP:80| B
     B -->|HTTP:80| F
 
     style F fill:#cce5ff
