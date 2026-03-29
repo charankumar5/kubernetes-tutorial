@@ -379,10 +379,10 @@ Allowing ingress traffic:
 
 ```mermaid
 graph TD
-    F[Frontend Pod] -. BLOCKED .->|TCP:3306| DB[(MySQL DB)]
-    B[Backend Pod] -->|TCP:3306| DB
-    F -->|HTTP:80| B
+    F[Frontend Pod] -->|HTTP:80| B[Backend Pod]
     B -->|HTTP:80| F
+    B -->|ALLOW 3306| DB[(MySQL DB)]
+    F -.->|BLOCKED 3306| DB
 
     style F fill:#cce5ff
     style B fill:#d4edda
