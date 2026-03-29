@@ -483,4 +483,3 @@ You successfully:
 * Enforced **zero-trust pod communication**
 
 ---
-
